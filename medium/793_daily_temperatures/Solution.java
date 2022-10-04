@@ -9,7 +9,8 @@ class Solution {
             int counter = 0;
             while (!s.isEmpty() &&  temperatures[i] > temperatures[s.peek()] ) {
                 int prevDay = s.pop();
-                ans[prevDay] = i - prevDay;
+		// controls how multiple days can also have the same FIRST warm day
+                ans[prevDay] = i - prevDay;  
             }
             
             s.push(i);
