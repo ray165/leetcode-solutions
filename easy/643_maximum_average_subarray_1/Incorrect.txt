@@ -1,0 +1,27 @@
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        double runningSum = 0;
+        double maxAvg = Integer.MIN_VALUE;
+        int left = 0;
+        int right = k -1;
+        
+        /// sum up first subarray of k 
+        for (int i = 0; i <= right; i++) {
+            runningSum += nums[i];
+        }
+        
+        // O(n*k) == time limit exceeded
+        while (right < nums.length - 1) {
+            double currAvg = runningSum / k;
+            
+            if (currAvg > maxAvg) maxAvg = currAvg;
+            
+            runningSum -= nums[left];
+            runningSum += nums[right];
+            
+            left++;
+            right++;
+        }
+        return maxAvg == Integer.MIN_VALUE ? runningSum / k : maxAvg;
+    }
+}
