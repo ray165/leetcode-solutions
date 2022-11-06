@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isHappy(int n) {
+        Set<Integer> repeats = new HashSet<>();
+
+        int sum = n;
+        while (sum != 1) {
+            if (repeats.contains(sum)) {
+                return false;
+            } else {
+                repeats.add(sum);
+            }
+
+            String s = String.valueOf(sum);
+            char[] digits = s.toCharArray();
+            sum = 0; // reset the sum
+
+            for (char x : digits) {
+                int curr = Character.getNumericValue(x);
+                sum += Math.pow(curr, 2); 
+            }
+        }
+
+        return true;
+    }
+}
