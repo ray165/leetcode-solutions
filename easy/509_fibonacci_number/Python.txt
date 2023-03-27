@@ -1,0 +1,18 @@
+# use of generators
+
+class Solution:
+    def fib_generator(self):
+        prev = 0
+        curr = 1
+        while True:
+            yield curr
+            prev, curr = curr, prev + curr
+
+    def fib(self, n: int) -> int:
+        val = 0
+        my_gen = self.fib_generator()
+        for i in range(n):
+            val = next(my_gen) 
+        return val
+
+
