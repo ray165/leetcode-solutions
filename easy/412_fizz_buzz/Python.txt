@@ -1,0 +1,17 @@
+class Solution:
+    def fizzBuzz(self, n: int) -> List[str]:
+        ans = list()
+        for i in range(1, n + 1):
+            ans.append(self.get_value(i))
+        
+        return ans
+
+    def get_value(self, i: int):
+        if i % 3 == 0 and i % 5 == 0:
+            return "FizzBuzz"
+        elif i % 3 == 0:
+            return "Fizz"
+        elif i % 5 == 0:
+            return "Buzz"
+        else:
+            return str(i)

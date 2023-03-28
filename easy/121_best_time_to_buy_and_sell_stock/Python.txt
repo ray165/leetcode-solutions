@@ -1,0 +1,30 @@
+# Brute Force
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        max_ = 0 
+        for i in range(0, len(prices)):
+            for j in range(i + 1, len(prices)):
+                    max_ = max(prices[j] - prices[i], max_)
+
+        return max_
+
+
+# One pass
+"""
+ Keep track of the min price. And only compare next
+ indexes to the min price 
+	price[i] - min_price
+
+"""
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        max_ = 0 
+        min_ = float('inf')
+        for i in range(len(prices)):
+            if prices[i] < min_:
+                min_ = min(prices[i], min_)
+            else:
+                max_ = max(prices[i] - int(min_), max_)
+
+        return max_
