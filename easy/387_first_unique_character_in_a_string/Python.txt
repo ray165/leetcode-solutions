@@ -1,0 +1,16 @@
+# march 28
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        mp = dict()
+
+        for char in s:
+            if char in mp:
+                mp[char] = mp[char] + 1
+            else:
+                mp[char] = 1
+
+        for idx, char in enumerate(s):
+            if mp[char] == 1:
+                return idx
+
+        return -1
