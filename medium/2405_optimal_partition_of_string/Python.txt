@@ -1,4 +1,31 @@
 # Apr 4, 2023 
+
+
+#improved with dict and remove print
+class Solution:
+    def partitionString(self, s: str) -> int:
+        tracker = {}
+        counter = 0
+        for char in s:
+            if char in tracker:
+                counter += 1
+                tracker = {}
+            tracker[char] = char
+
+        if tracker: 
+            counter += 1
+
+        return counter
+                
+
+
+"""
+Keep going till we're forced to back off from a substring
+count++ the times we empty the tracker
+"""
+
+
+
 # poor performance and space usage
 
 class Solution:
