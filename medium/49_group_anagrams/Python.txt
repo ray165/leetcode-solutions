@@ -1,0 +1,22 @@
+# Apr 1, 2023
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ans = []
+        mp = {}
+        for word in strs:
+            chars = sorted(word)
+            key = "".join(chars)
+            if key in mp:
+                list_ = mp[key]
+                list_.append(word)
+            else:
+                mp[key] = [word]
+        
+        for key, value in mp.items():
+            ans.append(value)
+
+        return ans
+
+
+        
