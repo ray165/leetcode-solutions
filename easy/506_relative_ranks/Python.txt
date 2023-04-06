@@ -1,0 +1,31 @@
+# Apr 5, 2023
+# better performance by using dict and sort
+# but trades off memory usage signficantly
+
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        copy_ = sorted(score, reverse=True)
+        ans = []
+        mp = {}
+
+        for idx, val in enumerate(copy_):
+            mp[val] = idx
+
+        for idx, val in enumerate(score):
+            if val == copy_[0]:
+                ans.append("Gold Medal")
+            elif val == copy_[1]:
+                ans.append("Silver Medal")
+            elif val == copy_[2]:
+                ans.append("Bronze Medal")
+            else:
+                ans.append(str(mp[val] + 1))
+            
+        return ans
+
+"""
+sort descending to get the top 3 numbers
+
+assign them Gold Silver Brnze
+
+"""

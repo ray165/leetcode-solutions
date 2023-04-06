@@ -1,0 +1,35 @@
+
+# Apr 6, 2023
+class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        paragraph = paragraph.lower().strip()
+        
+        # remove punctuation
+        # remove_punc = lambda x : (x >= 'a' and x <= 'z') or x == ' '
+        # filter_list = list(filter(remove_punc, paragraph))
+        # clean = "".join(filter_list)
+
+        # need to add this name to replace non alnum chars with spaces
+        clean = ''.join([c.lower() if c.isalnum() else ' ' for c in paragraph])
+        # print(clean)
+
+        # split into words
+        words = clean.split()
+
+        mp = {}
+        max_word = ""
+        max_count = 0
+
+        for word in words:
+            # filter out banned words
+            if word in banned:
+                continue
+
+            # add counts to a map
+            mp[word] = mp.get(word, 1) + 1
+            if mp[word] > max_count:
+                max_word = word
+                max_count = mp[word]
+
+        return max_word
+
