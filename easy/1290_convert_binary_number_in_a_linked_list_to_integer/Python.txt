@@ -1,0 +1,26 @@
+# Apr 6, 2023
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def getDecimalValue(self, head: ListNode) -> int:
+        curr = head
+        mlist = []
+        while curr != None:
+            mlist.append(curr.val)
+            curr = curr.next
+
+        # get binary
+        sum_ = 0
+        base_ = 0
+        while mlist:
+            binary_ = mlist.pop()
+            sum_ += (2 ** base_) * binary_
+            base_ += 1
+
+        return sum_
+
+        
