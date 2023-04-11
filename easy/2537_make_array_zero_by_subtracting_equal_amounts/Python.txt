@@ -1,0 +1,31 @@
+# Apr 9, 2023. Shouldn't put a list(filter()) inside of a while condition!!
+# bad performance
+
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        query = lambda x : x > 0
+        smallest = float('inf')
+        count = 0
+
+        while list(filter(query, nums)):
+            list_smalls = [num for num in nums if num > 0]
+            if list_smalls:
+                smallest = min(list_smalls)
+            else:
+                return count
+
+            for idx, val in enumerate(nums):
+                if val > 0:
+                    nums[idx] -= smallest
+            count += 1
+
+        return count
+
+"""
+smallest = keep track of the smallest element in nums 
+
+x <= smallest 
+
+subtract x from every positive element in nums 
+
+"""
