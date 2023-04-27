@@ -1,0 +1,33 @@
+# Inefficent hashmapping
+
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        my_trusts = dict()
+        trusts_soneone = dict()
+        candidates = []
+
+        for ship in trust:
+            trusts_soneone[ship[0]] = ship[0]
+            val = ship[1]
+            my_trusts[val] = my_trusts.get(val, 0) + 1
+            if my_trusts[val] == n -1:
+                candidates.append(val)
+
+
+        if not candidates and n == 1:
+            return 1
+
+        for can in candidates:
+            if can not in trusts_soneone:
+                return can
+
+        return -1
+
+
+        """
+        everyone trusts:  person should not exist
+        --> look through dictionary to find the person[b] that has count = n 
+        --> add to candidates list
+        trusts no one:
+        dict[person] == 0 trust count 
+        """

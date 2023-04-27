@@ -1,0 +1,47 @@
+class Solution:
+    def matrixScore(self, grid: List[List[int]]) -> int:
+        for row in grid:
+            if row[0] == 0:
+                for idx, val in enumerate(row):
+                    row[idx] = 1 - val # language netual swap 0 to 1, 1 to 0
+
+        n_cols = len(grid[0])
+        n_rows = len(grid)
+
+        # start from col1  not col0, as we already changed it
+        for col_idx in range(1, n_cols):
+            ones = 0
+            for row_idx in range(n_rows):
+                val = grid[row_idx][col_idx]
+                if val == 1:
+                    ones += 1
+            
+            # if less than half, then its worth swapping
+            if ones < n_rows / 2:
+                for row_idx in range(n_rows):
+                    val = grid[row_idx][col_idx]
+                    grid[row_idx][col_idx] = 1 - val
+
+        sum = 0
+
+        # sum these babies up
+        for row in grid:
+            s_binary = list(map(str, row))
+            sum += int("".join(s_binary), 2)
+
+
+        return sum
+
+
+"""
+target rows first 
+, switch if the left most digit is 0
+reasoning>>  1000  will always be greater than 0111
+
+
+target cols after parsing each row (starting from 2nd col)
+    vertically check how many 1's would result due to a swap. If it's greater than curr, do the swap
+
+sum the score, then return it 
+
+"""
