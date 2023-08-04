@@ -1,0 +1,16 @@
+# Apr 28
+
+class Solution:
+    def countElements(self, nums: List[int]) -> int:
+        count = 0
+        if len(nums) < 3:
+            return count
+        
+        min_ = min(nums)
+        max_ = max(nums)
+
+        for i in nums:
+            if i > min_ and i < max_:
+                count += 1
+
+        return count
