@@ -1,0 +1,24 @@
+class Solution:
+    def reorganizeString(self, s: str) -> str:
+        chars = [*s]
+        helper = []
+        prev = ''
+        cycle_count = 0
+        while chars:
+            print("chars", chars)
+            print("helper", helper)
+            curr = chars.pop(0)
+            if curr is not prev:
+                helper.append(curr)
+                prev = curr
+                count = 0
+            else:
+                chars.append(curr) 
+                count += 1
+                if count == len(chars):
+                    return ""
+
+        if len(chars) != 0:
+            return ""
+        else:
+            return "".join(helper)
