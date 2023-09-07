@@ -1,0 +1,38 @@
+class Solution:
+    def findLongestChain(self, pairs: List[List[int]]) -> int:
+        # [a,b] [c,d]
+        #----^---^
+        # chain if b < c
+
+        # check if:
+        #   prev = [a,b]
+        #   curr = [c,d]
+        #   is prev[1] < curr[0] --> then we have a chain. Chain++ 
+
+        # Order does not matter. We are forming a chain given these variables
+        sorted_pairs = sorted(pairs, key=lambda x: x[1])
+        ans = 0
+        curr = float('-inf')
+        for i, curr_pair in enumerate(sorted_pairs):            
+            if curr_pair[0] > curr:
+                ans += 1
+                curr = curr_pair[1]
+            
+        return ans
+
+            
+
+            
+
+
+"""
+Use a map of lists. 
+key = start
+value = list[] of index[0]'s that we can use to form the chain. 
+
+
+[1,2]  [3,4]
+
+
+
+"""
