@@ -1,0 +1,8 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        counts = collections.Counter(s)
+        sb = []
+        for letter, freq in counts.most_common():
+            sb.append(letter * freq)
+
+        return "".join(sb)
