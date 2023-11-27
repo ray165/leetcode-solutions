@@ -1,0 +1,11 @@
+class Solution:
+    def fib(self, n: int) -> int:
+        store = [0, 1]
+        if n < 2:
+            return store[n]
+        
+        for i in range(2, n + 1):
+            val = store[i - 1] + store[i - 2]
+            store.append(val)
+
+        return store.pop()

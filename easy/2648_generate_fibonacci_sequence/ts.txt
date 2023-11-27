@@ -1,0 +1,19 @@
+function* fibGenerator(): Generator<number, any, number> {
+	let prev = 0;
+    let next = 1;
+    yield prev;
+    yield next;
+    let memo = prev + next
+    while(true) {
+        yield memo;
+        prev = next
+        next = memo
+        memo = prev + next
+    }
+};
+
+/**
+ * const gen = fibGenerator();
+ * gen.next().value; // 0
+ * gen.next().value; // 1
+ */
